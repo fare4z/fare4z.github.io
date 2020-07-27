@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="../style/style.css" /></head>
+<body>
+<META content="MSHTML 6.00.3790.4064" name=GENERATOR></HEAD>
+<?php
+include "../conn_oracle.php";
+
+session_start();
+
+$username = $_SESSION['MM_Username'];
+
+$qry = OCIParse($c, "select sta_nostaf, bio_nama from sn_login, sn_pa_biodata where sta_nostaf=bio_nostaf and sta_id_pengguna='$username' and sta_aktif='Y'");
+OCIExecute($qry, OCI_DEFAULT);
+if (OCIFetch($qry)) {
+    $nostaff = ociresult($qry, "STA_NOSTAF");
+    $namastaf = ociresult($qry, "BIO_NAMA");
+}
+
+$tahun = $_REQUEST['tahun'];
+$kategori = $_REQUEST['kategori'];
+$nogaji = $_REQUEST['nogaji'];
+
+$qryStaf = OCIParse($c, "select jabatan_pohon, ptj_pohon, jabatan_pohonbi, ptj_pohonbi from sn_vw_att_staff where nogaji_pohon='$nogaji' ");
+OCIExecute($qryStaf, OCI_DEFAULT);
+if (OCIFetch($qryStaf)) {
+    $jabatan_staf = ociresult($qryStaf, "JABATAN_POHON");
+    $ptj_staf = ociresult($qryStaf, "PTJ_POHON");
+    $jabatanbi_staf = ociresult($qryStaf, "JABATAN_POHONBI");
+    $ptjbi_staf = ociresult($qryStaf, "PTJ_POHONBI");
+}
+?>
+<script type="text/javascript">
+var shell;
+function winPrint()
+{
+  try
+  {
+    SetPaperSize();
+  } catch (e) {
+    SetPaperSize_fail();
+  }
+}
+
+function SetPaperSize_fail()
+{
+  if(navigator.product!='Gecko'||navigator.appVersion<5)
+	alert('Sila pastikan format cetak telah disetkan kepada orientasi Landscape');
+  window.print();
+}
+
+function closepage()
+	{
+		window.close()
+	}
+
+</script>
+<?php //if (!$tahun) || (!$kategori) {?>
+
+<?php
+//} else {
+
+if ($tahun == 'SEMUA') {$cond_tahun = "";} else { $cond_tahun = "and '$tahun' between to_char(tkh_mula,'yyyy') and to_char(tkh_tamat,'yyyy')";}
+if ($kategori == '-- SEMUA KATEGORI --') {$cond_kat = "";} else { $cond_kat = "and kat_kursus = '$kategori'";}
+
+?>
+<table border="0" cellpadding="2" cellspacing="2" width="80%" align="center" class="font_others">
+  <tr>
+    <td align="right">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="right"><a href="javascript:closepage()">Tutup</a> ||
+					  <a href="javascript:winPrint()">Cetak</a>
+	</td>
+  </tr>
+  <tr>
+    <td><div align="center">
+         <!--  <p><strong>BAHAGIAN LATIHAN & PEMBANGUNAN STAF (STAND)<br />UNIVERSITI MALAYA<br />
+			<em>(STAFF TRAINING & DEVELOPMENT DIVISION (STAND), UNIVERSITY OF MALAYA)</em>
+            </strong></p> -->
+          </div><br>
+      		<div align="center"><?php echo $jabatan_staf; ?><!-- &nbsp;/&nbsp;<em>(<?php echo $jabatanbi_staf; ?>)</em> --></div><br />
+			<div align="center"><?php echo $ptj_staf; ?>&nbsp;/&nbsp;<em>(<?php echo $ptjbi_staf; ?>)</em></div>
+		</td>
+  </tr>
+  <tr>
+    <td height="8">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center">SENARAI KURSUS YANG DIHADIRI SEPANJANG TAHUN <?php echo "<strong>$tahun</strong>"; ?> BAGI <strong><?php if ($kategori == '-- SEMUA KATEGORI --') {echo "SEMUA JENIS KURSUS";} else {echo "$kategori";}?></strong></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" cellspacing="2" width="80%" height="303" align="center" class="font_others">
+    <tr align="left">
+      <td height="22">&nbsp;</td>
+    </tr>
+    <tr align="left">
+      	<td height="22">
+        <div align="left">Nama&nbsp;/&nbsp;<em>Name</em>&nbsp;:&nbsp;<?php echo $namastaf; ?></div><br />
+		<div align="left">No. Staf&nbsp;/&nbsp;<em>Staff No.</em>&nbsp;:&nbsp;<?php echo $nostaff; ?></div>
+		</td>
+    </tr>
+    <tr>
+      <td height="5"><HR align="center" width=100% size="1" noshade></td>
+    </tr>
+    <tr>
+      <td height="100" align="center">
+	  <table width="100%" align="center" cellspacing="0" style="border:1px solid #000; border-bottom:0px; border-bottom:1px solid #000;border-right:1px solid #000;">
+	  <tr bgcolor="#CCCCCC" style="border:1px solid #000; border-bottom:0px;">
+	  <th width="3%" style="border-bottom:1px solid #000;border-right:1px solid #000;">Bil</th>
+      <th width="10%" style="border-bottom:1px solid #000;border-right:1px solid #000;">Tarikh</th>
+      <th width="20%" style="border-bottom:1px solid #000;border-right:1px solid #000;">Kursus Dihadiri</th>
+      <th width="15%" style="border-bottom:1px solid #000;border-right:1px solid #000;">Jenis Kursus</th>
+      <th width="15%" style="border-bottom:1px solid #000;border-right:1px solid #000;">Agensi/Badan Penganjur</th>
+      <th width="15%" style="border-bottom:1px solid #000;border-right:1px solid #000;">Tempat</th>
+      <th width="5%" style="border-bottom:1px solid #000;border-right:1px solid #000;">Bil Hari</th>
+      <th width="10%" style="border-bottom:1px solid #000;border-right:1px solid #000;">Kehadiran</th>
+	</tr>
+    <?php
+$indz = 1; //paging
+$indy = 0; //kiraan jumlah hari kursus start from 0
+
+$qrylatihan = OCIParse($c, $sqllatihan = "select no_staf, to_char(tkh_mula,'dd/mm/yyyy') as tarikh_mula, to_char(tkh_tamat,'dd/mm/yyyy') as tarikh_tamat,
+   					bil_hari as b_hari, to_date(tkh_tamat,'dd/mm/yyyy') - to_date(tkh_mula,'dd/mm/yyyy') +1 as tempoh, to_char(tkh_mula,'yyyymmdd') as tkhmula,
+					jenis_kursus, kat_kursus, tempat as tempat_kur, lulus_hadir as hadir, penganjur
+					from sn_vw_lt_all_staf
+					where no_staf='$nogaji'
+					$cond_tahun
+					$cond_kat
+					order by tkh_mula
+     ");
+
+// echo $sqllatihan;
+
+OCIExecute($qrylatihan, OCI_DEFAULT);
+while (OCIFetch($qrylatihan)) {
+    $tajuk = OCIResult($qrylatihan, "JENIS_KURSUS");
+    //$penganjur=OCIResult($qrylatihan,"PENGANJUR");
+    $tarikh_mula = OCIResult($qrylatihan, "TARIKH_MULA");
+    $tarikh_tamat = OCIResult($qrylatihan, "TARIKH_TAMAT");
+    $tkhmula = OCIResult($qrylatihan, "TKHMULA");
+    $b_hari = OCIResult($qrylatihan, "B_HARI");
+    $kira_hari = OCIResult($qrylatihan, "TEMPOH");
+    $tem_kur = OCIResult($qrylatihan, "TEMPAT_KUR");
+    //$stat_bjaya=OCIResult($qrylatihan,"STATUS_BERJAYA");
+    //$ind=OCIResult($qrylatihan,"IND");
+    $hadir = OCIResult($qrylatihan, "HADIR");
+    $kategori_kursus = OCIResult($qrylatihan, "KAT_KURSUS");
+    $penganjur = OCIResult($qrylatihan, "PENGANJUR");
+
+    if ($b_hari) {$jumindy = $b_hari;} else { $jumindy = $kira_hari;}
+    $indy = $indy + $jumindy;
+    ?>
+    <tr>
+	  <td style="border-bottom:1px solid #000;border-right:1px solid #000;" valign="top">
+      	<table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr >
+            <td align="center"><?php echo $indz; ?></td>
+          </tr>
+        </table>
+      </td>
+      <td style="border-bottom:1px solid #000;border-right:1px solid #000;" valign="top">
+	  <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+              <tr>
+                <td><?php echo "$tarikh_mula"; ?> </td>
+                <td>&nbsp;-</td>
+              </tr>
+              <tr>
+                <td><?php echo "$tarikh_tamat"; ?> </td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+	  </td>
+      <td style="border-bottom:1px solid #000;border-right:1px solid #000;" valign="top">
+	  <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td valign="top"><?php echo $tajuk; ?></td>
+          </tr>
+        </table>
+	  </td>
+      <td style="border-bottom:1px solid #000;border-right:1px solid #000;" align="left" valign="top">
+      	<table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td><?php echo $kategori_kursus; ?></td>
+          </tr>
+        </table>
+	  </td>
+      <td style="border-bottom:1px solid #000;border-right:1px solid #000;" valign="top">
+	  	<table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td><?php echo $penganjur; ?></td>
+          </tr>
+        </table>
+	  </td>
+      <td style="border-bottom:1px solid #000;border-right:1px solid #000;" align="center" valign="top">
+	  	<table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td><?php echo $tem_kur; ?></td>
+          </tr>
+        </table>
+	  </td>
+      <td style="border-bottom:1px solid #000;border-right:1px solid #000;" align="center" valign="top">
+	  <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td align="center"> <?php if ($b_hari) {echo "$b_hari";} else {echo "$kira_hari";}?>	  </td>
+          </tr>
+        </table>
+      </td>
+      <td style="border-bottom:1px solid #000;border-right:1px solid #000;" align="center" valign="top">
+	  <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td align="center">
+            <?php if ($kategori_kursus == 'KURSUS BIRO TATANEGARA' || $kategori_kursus == 'LAWATAN' || $kategori_kursus == 'PTK') {echo "TIADA REKOD";} //null
+    if ($kategori_kursus == 'KURSUS INDUKSI' || $kategori_kursus == 'KURSUS DALAMAN' || $kategori_kursus == 'KURSUS LUARAN' || $kategori_kursus == 'KURSUS/SEMINAR/BENGKEL/PERSIDANGAN/FORUM') {if ($hadir == 'Y') {echo "HADIR";} else if ($hadir == 'T') {echo "TIDAK HADIR";} else {echo "TIADA REKOD";}}
+    if ($kategori_kursus == 'KURSUS ANJURAN PTJ' || $kategori_kursus == 'PERSIDANGAN' || $kategori_kursus == 'PENYELIDIKAN') {if ($hadir == 'Y') {echo "HADIR";} else {echo "TIADA REKOD";}}
+    ?>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <?php $indz++;}?>
+
+	<?php if (!($tajuk)) {?>
+	<tr>
+		<td height="20" colspan="8">
+		  <div align="center"><strong><?php echo "TIADA REKOD"; ?></strong></div></td>
+	</tr>
+	<?php }?>
+  </table>
+  <table width="100%" height="44" border="0">
+	<tr>
+	  <td align="left">Jumlah hari berkursus bagi <strong><?php if ($kategori == '-- SEMUA KATEGORI --') {echo "SEMUA JENIS KURSUS";} else {echo "$kategori";}?></strong> pada tahun <strong><?php echo $tahun; ?> </strong>ialah <strong><strong><?php if ($indy == '') {echo "0";} else {echo $indy;}?></strong> hari </strong></td>
+	  </tr>
+</table>
+  </td>
+    </tr>
+  </table>
+<?php //} ?>
+</div>
+</BODY></HTML>
+<?php
+OCILogoff($c);
+?>
+
