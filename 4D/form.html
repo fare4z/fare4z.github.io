@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Borang Pendaftaran</title>
+</head>
+<body>
+	<h2>Borang Pendaftaran</h2>
+
+<form action="https://dev.jtmkpsp.my/process.php" method="POST" enctype="multipart/form-data">
+	<p>
+		<label for="nama">Nama Peserta : </label>
+		<input type="text" name="nama" id="nama">
+	</p>
+
+	<p>
+		<label for="emel">Email : </label>
+		<input type="email" name="email" id="email">
+	</p>
+
+	<p> 
+		<label for="phone">Nombor Telefon : </label>
+		<input type="text" name="nombor_telefon" id="nombor_telefon">
+	</p>
+
+	<p>
+		<label for="address">Alamat Rumah : </label>
+		<textarea name="address" id="address"></textarea>
+	</p>
+
+	<p>
+<label for="status_pelajar">Status Pelajar : </label>
+<select name="status" id="status">
+	<option value="">-- Sila Pilih -- </option>
+	<option value="Aktif">Aktif</option>
+	<option value="Tidak Aktif">Tidak Aktif</option>
+</select>
+	</p>
+
+	<p>
+		<label for="Jantina">Jantina : </label>
+		<input type="radio" name="jantina" id="jantina" value="Lelaki">Lelaki
+		<input type="radio" name="jantina" id="jantina" value="Perempuan">Perempuan
+	</p>
+
+
+	<p>
+		<label for="skill">Kemahiran : </label>
+		<input type="checkbox" name="skill[]" id="skill[]" value="HTML">HTML
+
+		<input type="checkbox" name="skill[]" id="skill[]" value="CSS">CSS
+
+		<input type="checkbox" name="skill[]" id="skill[]" value="PHP">PHP
+	</p>
+
+	<p>
+		<label for="dp">Gambar Profile</label>
+		<input type="file" name="gambar_profile" id="gambar_profile">
+	</p>
+
+	<input type="hidden" name="roles" id="roles" value="admin">
+
+	<p>
+		<label for="katalaluan">Kata Laluan</label>
+		<input type="password" name="katalaluan" id="katalaluan">
+	</p>
+
+	<p>
+		<button type="submit">Hantar</button> &nbsp;
+		<button type="reset">Kosongkan</button>
+
+	</p>
+
+
+
+</form>
+
+</body>
+</html>
