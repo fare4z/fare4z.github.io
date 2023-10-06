@@ -1,0 +1,21 @@
+p {
+	font-size: 26px; 
+	color: blue;
+ }
+
+.tengah {
+	text-align: center;
+}
+
+h1.kanan {
+	text-align: right;
+}
+
+p.kanan {
+	text-align: right;
+}
+
+#kuning {
+	background-color: yellow;
+	border-style: dotted;
+}
