@@ -83,3 +83,71 @@ footer {
   color: #FFF;
   padding: 10px;
 }
+
+.center_all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 3px solid green; 
+}
+
+/* Apply styles to the table with ID "social" */
+#social {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* Style for table header cells */
+#social th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Style for table data cells */
+#social td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+/* Style for alternating rows */
+#social tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Add some spacing between table cells */
+#social td, #social th {
+    text-align: left;
+}
+
+/* Style the table caption */
+#social caption {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Remove default list style for the table */
+#social ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Apply styles to the ordered list with ID "skill" */
+#skill {
+    list-style-type: decimal;
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+/* Style for list items (li) within the "skill" list */
+#skill li {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
