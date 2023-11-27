@@ -16,6 +16,25 @@
 	</p>
 
 	<p>
+		<label for="nama">Nombor Kad Pengenalan : </label>
+		<input type="text" name="nric" id="nric">
+
+		<input type="button" value="checkGender" onclick="checkGender()"> 
+		<input type="button" value="checkDob" onclick="checkDob()"> 
+	</p>
+
+	<p>
+		<label for="nama">Tarikh Lahir : </label>
+		<input type="text" name="tarikhlahir" id="tarikhlahir">
+		<span id="outPutTarikhLahir"></span>
+	</p>
+
+	<p>
+		<label for="nama">Jantina : </label>
+		<span id="outPutJantina"></span>
+	</p>
+
+	<p>
 		<label for="emel">Email : </label>
 		<input type="email" name="email" id="email">
 	</p>
@@ -41,8 +60,8 @@
 
 	<p>
 		<label for="Jantina">Jantina : </label>
-		<input type="radio" name="jantina" id="jantina" value="Lelaki">Lelaki
-		<input type="radio" name="jantina" id="jantina" value="Perempuan">Perempuan
+		<input type="radio" name="jantina" id="Lelaki" value="Lelaki">Lelaki
+		<input type="radio" name="jantina" id="Perempuan" value="Perempuan">Perempuan
 	</p>
 
 
@@ -74,4 +93,71 @@
 	</p>
 </form>
 </body>
+
+<script>
+	function myFunction() {
+		var txt;
+		if (confirm("Are you sure to submit the form") == true) {
+			txt = "You pressed OK!";
+		} else {
+			txt = "You pressed Cancel!";
+		}
+		document.getElementById("outPutTarikhLahir").innerHTML = txt;
+	}
+
+	function checkDob() {
+		let nric = document.getElementById("nric").value;
+
+	const birthYear = parseInt(nric.substr(0, 2));
+    const birthMonth = parseInt(nric.substr(2, 2));
+    const birthDay = parseInt(nric.substr(4, 2));
+
+
+    // Combine the century, year, month, and day to form the date of birth
+    const dob = new Date(`${birthYear}`, birthMonth - 1, birthDay);
+
+	document.getElementById("outPutTarikhLahir").innerHTML = dob.toDateString();
+	document.getElementById("tarikhlahir").value = dob.toDateString();
+
+   
+
+	}
+
+	function checkGender() {
+		let nric = document.getElementById("nric").value;
+		const checkNRIC = parseInt(nric.charAt(11));
+
+// Check if the seventh digit is odd or even to determine gender
+		let jantina = checkNRIC % 2 === 0 ? 'Perempuan' : 'Lelaki';
+
+		// if (checkNRIC % 2 === 0) {
+		// 	jantina = 'Perempuan';
+		// } else {
+		// 	jantina = 'Lelaki';
+		// }
+
+		
+
+		document.getElementById("outPutJantina").innerHTML = jantina;
+		autoSelectGender(jantina);
+
+	}
+
+	function autoSelectGender(gender) {
+        // Get the radio button by ID
+        const maleRadioButton = document.getElementById('Lelaki');
+        const femaleRadioButton = document.getElementById('Perempuan');
+
+        // Set the checked property based on the gender
+        if (gender === 'Lelaki') {
+            maleRadioButton.checked = true;
+        } else if (gender === 'Perempuan') {
+            femaleRadioButton.checked = true;
+        }
+    }
+
+
+	</script>
+	
+
 </html>
