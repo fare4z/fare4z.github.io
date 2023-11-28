@@ -25,7 +25,7 @@
 
 	<p>
 		<label for="nama">Tarikh Lahir : </label>
-		<input type="text" name="tarikhlahir" id="tarikhlahir">
+		<input type="date" name="tarikhlahir" id="tarikhlahir">
 		<span id="outPutTarikhLahir"></span>
 	</p>
 
@@ -89,6 +89,7 @@
 	<p>
 		<button type="submit">Hantar</button> &nbsp;
 		<button type="reset">Kosongkan</button>
+		<input type="button" value="Validate" onclick="formValidation()"> 
 
 	</p>
 </form>
@@ -106,7 +107,7 @@
 	}
 
 	function checkDob() {
-		let nric = document.getElementById("nric").value;
+	let nric = document.getElementById("nric").value;
 
 	const birthYear = parseInt(nric.substr(0, 2));
     const birthMonth = parseInt(nric.substr(2, 2));
@@ -117,11 +118,26 @@
     const dob = new Date(`${birthYear}`, birthMonth - 1, birthDay);
 
 	document.getElementById("outPutTarikhLahir").innerHTML = dob.toDateString();
-	document.getElementById("tarikhlahir").value = dob.toDateString();
+	
 
-   
 
-	}
+   const dob2 = new Date(birthYear, birthMonth - 1, birthDay);
+   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+   const formattedDob = dob2.toLocaleDateString('en-CA', options);
+
+   document.getElementById("tarikhlahir").value = formattedDob;
+   	}
+
+
+   	function formValidation() {
+   		let address = document.getElementById("address").value;
+
+   		if (address.length === 0) {
+   			let errAddress = "Please enter address";
+   			alert(errAddress);
+   		}
+   	}
+
 
 	function checkGender() {
 		let nric = document.getElementById("nric").value;
@@ -144,15 +160,15 @@
 	}
 
 	function autoSelectGender(gender) {
-        // Get the radio button by ID
-        const maleRadioButton = document.getElementById('Lelaki');
-        const femaleRadioButton = document.getElementById('Perempuan');
+        
+        const lelakiRB = document.getElementById('Lelaki');
+        const perempuanRB = document.getElementById('Perempuan');
 
-        // Set the checked property based on the gender
+       
         if (gender === 'Lelaki') {
-            maleRadioButton.checked = true;
+            lelakiRB.checked = true;
         } else if (gender === 'Perempuan') {
-            femaleRadioButton.checked = true;
+            perempuanRB.checked = true;
         }
     }
 
