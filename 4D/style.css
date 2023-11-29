@@ -20,6 +20,7 @@ label {
 }
 
 input[type="text"],
+input[type="date"],
 input[type="email"],
 input[type="password"],
 textarea,
@@ -40,7 +41,8 @@ input[type="checkbox"] {
 
 /* Style buttons */
 button[type="submit"],
-button[type="reset"] {
+button[type="reset"],
+input[type="button"] {
   background-color: #007bff;
   color: #fff;
   border: none;

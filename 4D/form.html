@@ -17,11 +17,10 @@
 
 	<p>
 		<label for="nama">Nombor Kad Pengenalan : </label>
-		<input type="text" name="nric" id="nric">
-
-
-		<input type="button" value="demo" onclick="myFunction()">
-	<input type="button" value="Jana Maklumat Peribadi" onclick="generatePersonalInfo()"> 
+		<input type="text" name="nric" id="nric" oninput="validate_nric()">
+		<span id="msgnric"></span>
+	
+		<input type="button" value="Jana Maklumat Peribadi" onclick="generatePersonalInfo()"> 
 	
 	</p>
 
@@ -65,10 +64,6 @@
 	<option value="Tidak Aktif">Tidak Aktif</option>
 </select>
 	</p>
-
-
-
-
 	<p>
 		<label for="skill">Kemahiran : </label>
 		<input type="checkbox" name="skill[]" id="skill[]" value="HTML">HTML
@@ -99,92 +94,6 @@
 </form>
 </body>
 
-<script>
-	function myFunction() {
-		var txt;
-		if (confirm("Are you sure to submit the form") == true) {
-			txt = "<b>You pressed OK!<b> <br><table border='2'><tr><td>1</td><td>2</td></tr></table>";
-		} else {
-			txt = "You pressed Cancel!";
-		}
-		document.getElementById("demo").innerHTML = txt;
-	}
-
-	function checkDob(nric) {
-
-	const birthYear = nric.substr(0, 2);
-    const birthMonth = nric.substr(2, 2);
-    const birthDay = nric.substr(4, 2);
-	
-	const firstDigit = parseInt(nric.charAt(0));
-	let fullyear;
-	if (firstDigit == 0) {
-		fullyear = "20";
-	} else {
-		fullyear = "19";
-	}
-	let fullbirthYear = fullyear + birthYear;
-	console.log(fullbirthYear);
-    // Combine the century, year, month, and day to form the date of birth
-    const dob = new Date(`${fullbirthYear}`, birthMonth - 1, birthDay);
-	document.getElementById("outPutTarikhLahir").innerHTML = dob.toDateString();
-	
-   const dob2 = new Date(birthYear, birthMonth - 1, birthDay);
-   const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-   const formattedDob = dob2.toLocaleDateString('en-CA', options);
-
-   document.getElementById("tarikhlahir").value = formattedDob;
-
-   let currentDate = new Date();
-   let umur = currentDate.getFullYear() - fullbirthYear;
-   document.getElementById("umur").value = umur;
-  
-}
-
-
-	function checkGender(nric) {
-		const checkNRIC = parseInt(nric.charAt(11));
-		const checkNRIC2 = nric.substr(11,1);
-
-		if (checkNRIC % 2 === 0) {
-			jantina = 'Perempuan';
-		} else {
-			jantina = 'Lelaki';
-		}
-
-		autoSelectGender(jantina);
-
-	}
-	function autoSelectGender(gender) {
-        
-        const lelakiRB = document.getElementById('Lelaki');
-        const perempuanRB = document.getElementById('Perempuan');
-
-       
-        if (gender === 'Lelaki') {
-            lelakiRB.checked = true;
-        } else if (gender === 'Perempuan') {
-            perempuanRB.checked = true;
-        }
-    }
-
-	function checkStr() {
-		let string = "POLITEKNIK SEBERANG PERAI";
-		let p = string.substr(0,1);
-		let s = string.substr(11,1);
-		let perai = string.substr(20,1);
-
-		console.log(p);
-		console.log(s);
-		console.log(perai);
-	}
-
-	function generatePersonalInfo() {
-		let nric = document.getElementById("nric").value;
-		checkDob(nric);
-		checkGender(nric);
-
-	}
-</script>
+<script src="function.js"></script>
 	
 </html>
