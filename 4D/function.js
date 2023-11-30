@@ -88,11 +88,11 @@ function validate_nric() {
     let nric_msg;
 
 
-if (regex.test(nric.trim())) {
-    nric_msg = "";
-} else {
-    nric_msg = "<span style='color:red'>Please enter 12 digit of NRIC number without dash (-)</span>";
-   }
+    if (regex.test(nric.trim())) {
+        nric_msg = "";
+    } else {
+        nric_msg = "<span style='color:red'>Please enter 12 digit of NRIC number without dash (-)</span>";
+    }
 
 document.getElementById("msgnric").innerHTML = nric_msg;
 
