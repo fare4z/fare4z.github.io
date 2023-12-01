@@ -69,12 +69,25 @@ function generatePersonalInfo() {
     let nric = document.getElementById("nric").value;
 
     if (nric.length <= 0) {
-        alert("Please enter your IC number");
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Please enter your IC number'         
+        })
+
         return false;
     }
 
     if (nric.length != 12) {
-        alert("Please enter 12 digit only, without dash (-) or space")
+       
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: 'Please enter 12 digit only, without dash (-) or space'
+        })
+
         return false;
     }
 
@@ -87,9 +100,10 @@ function validate_nric() {
     const regex = /^\d{12}$/;
     let nric_msg;
 
-
     if (regex.test(nric.trim())) {
         nric_msg = "";
+        checkDob(nric);
+        checkGender(nric);
     } else {
         nric_msg = "<span style='color:red'>Please enter 12 digit of NRIC number without dash (-)</span>";
     }

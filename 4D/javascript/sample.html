@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Javascript 1</title>
+</head>
+<body>
+
+</body>
+
+<script type="text/javascript">
+	function exampleScope() {
+
+    var a = 5; // 'a' is function-scoped
+    let b = 10; // 'b' is block-scoped
+
+    if (true) {
+        var a = 20; // This reassigns the 'a' variable declared above
+       
+        b = 30; // This creates a new 'b' variable with block scope
+
+    }
+
+    console.log(a); // Outputs 20
+    console.log(b); // Outputs 10
+
+}
+
+exampleScope();
+
+</script>
+
+</html>
