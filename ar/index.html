@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Web AR Location-Based</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+    <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+        <a-text value="Welcome, JTMK PSP" position="0 0.5 -2" scale="5 5 5"
+            gps-entity-place="latitude: 5.3735097; longitude: 100.4260242;"></a-text>
+
+            <a-glb-model src="Frog.glb" gps-entity-place="latitude: 5.3735097; longitude: 100.4260242;"
+            scale="5 5 5"></a-glb-model>
+    </a-scene>
+
+     
+
+    <script>
+        window.onload = () => {
+            alert(
+                "Ensure GPS is enabled and provide necessary permissions to your browser."
+            );
+        };
+    </script>
+</body>
+
+</html>
