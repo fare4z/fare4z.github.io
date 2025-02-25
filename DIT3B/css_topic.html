@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Introduction to CSS</title>
+    <!-- Internal CSS -->
+    <style>
+        h2 {
+            color: red;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        h2.tengah {
+            text-align: center;
+        }
+
+        .bg-darks {
+            background-color: darkred;
+        }
+
+        .text-whites {
+            color: white;
+        }
+
+        #content {
+            background-color: lightgrey;
+            margin: 5px 10px 10px 5px;
+            padding: 5px;
+        }
+
+        .container .box p {
+            background-color: yellow;
+        }
+
+        .toUpperCase {
+            text-transform: uppercase;
+            text-decoration: underline;
+            
+        }
+
+        .potong {
+            text-decoration: line-through;
+        }
+
+    </style>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div id="content">
+        <h1>Welcome to JTMK</h1>
+        <h2 class="bg-darks text-whites tengah">Selamat Datang ke JTMK</h2>
+        <h2 class="tengah">Hello</h2>
+
+        <p style="color: darkblue; font-size: 20px;">Track Offered</p>
+
+        <p class="toUpperCase">Please select your track</p>
+
+        <ul>
+            <li class="potong">Software and Development Track</li>
+            <li>Networking System Track</li>
+            <li class="potong">Data Visualization Track</li>
+        </ul>
+
+        <button type="submit">Apply Here!</button>
+
+        <div class="container">
+            <div class="box">
+              <p>Hello</p>
+            </div>
+          </div>
+          
+    </div>
+
+    <footer>
+        Copyright 2025
+    </footer>
+</body>
+
+</html>
