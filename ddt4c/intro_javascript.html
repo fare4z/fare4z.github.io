@@ -16,7 +16,7 @@
     <br>
 
     <button onclick="register()">
-    Register Here!
+        Register Here!
     </button>
 
     <!-- Internal JavaScript -->
@@ -45,21 +45,67 @@
 
         function register() {
             // Ask student enter name
-     let studentName = prompt("Please Enter Your Name");
-     let studentAge = prompt("Enter your age");
+            let studentName = prompt("Please Enter Your Name");
+            let studentAge = prompt("Enter your age");
 
-    //  Check form validation
-    if (studentName) {
-        alert("Welcome to the class " 
-        + studentName + 
-        "! \n  Age : " 
-        + studentAge);
-    } else {
-        alert("Please enter ur name before proceed");
-    } 
+            //  Check form validation
+            if (studentName) {
+                alert("Welcome to the class "
+                    + studentName +
+                    "! \n  Age : "
+                    + studentAge);
+            } else {
+                alert("Please enter ur name before proceed");
+            }
 
 
         }
+
+        function checkLogin() {
+            var username = prompt('Username');
+            var password = prompt('Password');
+
+            if (username == "fareez") {
+                alert('User Exists');
+
+                if (password == "123456") {
+                    alert('Success Login');
+                } else {
+                    alert('Wrong Password');
+                }
+
+            } else if (username == "admin") {
+                alert('Admin')
+            }
+            else {
+                alert('User not exists');
+            }
+
+        }
+
+        function checkGrade() {
+            let grade = prompt('Please enter ur grade');
+            switch (grade) {
+                case "A":
+                    alert('Excellent');
+                    break;
+                case "B":
+                    alert('Good')
+                    break;
+                default:
+                    alert("invalid grade");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
 
     </script>
