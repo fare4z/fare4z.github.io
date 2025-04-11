@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>DOM & JavaScript Event</title>
+</head>
+<body>
+    <div id="box">
+        <h1>DOM - Document Object Model</h1>
+
+        <p>Menu</p>
+        <button onclick="addItem()">Add new menu</button>
+        <ul id="list">
+            <li>Nasi Ayam</li>
+            <li>Mee Goreng</li>
+        </ul>
+
+        <button onclick="changeBlue()">Blue Colour</button> <br>
+        <button onclick="changeRed()">Red Color</button>
+    </div>
+
+
+    <div id="sys">
+        <h1>Food Ordering System</h1>
+
+        <input type="checkbox" value="nasi ayam">Nasi Ayam - RM 10 <br>
+        <input type="checkbox" value="mee goreng">Mee Goreng - RM 8 <br>
+        <input type="checkbox" value="nasi lemak">Nasi Lemak - RM 12 <br>
+        <input type="checkbox" value="roti canai">Roti Canai - RM5 <br>
+
+        <button onclick="orderFood()">Order Now!</button>
+
+        <br>
+
+        <div id="info"></div>
+        <div id="priceInfo"></div>
+
+
+    </div>
+
+    <script src="function.js"></script>
+
+</body>
+</html>
