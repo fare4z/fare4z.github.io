@@ -2,11 +2,31 @@
 <html lang="en">
 <head>
    <title>DOM & JavaScript Event</title>
+
+   <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .desc {
+            color: #555;
+            font-size: 14px;
+        }
+      
+        #sys {
+            width: 80%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px auto;
+        }
+   </style>
 </head>
 <body>
     <div id="box">
         <h1>DOM - Document Object Model</h1>
-
+        <p>Tambah element <code>li</code> dan tukar style menggunakan DOM</p>
         <p>Menu</p>
         <button onclick="addItem()">Add new menu</button>
         <ul id="list">
@@ -25,7 +45,7 @@
         <input type="checkbox" value="nasi ayam">Nasi Ayam - RM 10 <br>
         <input type="checkbox" value="mee goreng">Mee Goreng - RM 8 <br>
         <input type="checkbox" value="nasi lemak">Nasi Lemak - RM 12 <br>
-        <input type="checkbox" value="roti canai">Roti Canai - RM5 <br>
+        <input type="checkbox" value="roti canai">Roti Canai - RM5 <br><br>
 
         <button onclick="orderFood()">Order Now!</button>
 

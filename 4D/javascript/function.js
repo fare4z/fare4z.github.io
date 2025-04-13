@@ -40,7 +40,8 @@ function orderFood() {
         checked_values.push(checkbox.value);
     })
 
-    info.innerText = checked_values.join(', ');
+    info.innerHTML = "<h2>Receipt</h2>" + checked_values.join(", ") + "<br>";
+    info.innerHTML += "<h3>Thank you for your order!</h3>";
     priceInfo.innerHTML = "<strong>Total Price : RM " + price + "\n </strong>";
 
 }
