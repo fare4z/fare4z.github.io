@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+
+<body>
+    <h2>Fruit Array</h2>
+
+    <div id="infoFruit"></div> <br>
+
+    <div id="infoPersonal"></div>
+
+    <script>
+        let infoFruit = document.getElementById("infoFruit");
+        infoFruit.innerText = "This is collection of fruit";
+
+        let fruit = ['Apple' , 'Banana' , ' Orange'];
+
+        console.log(fruit);
+        infoFruit.innerText = fruit;
+       
+        fruit[1] = "Mango";
+
+        console.log(fruit);
+
+        fruit.push('Grapes');
+        console.log(fruit);
+
+        fruit.unshift('Pineapple');
+        console.log(fruit);
+
+        fruit.shift();
+        fruit.shift();
+        fruit.pop();
+        console.log(fruit);
+
+        let nama = ['Ali' , 'Abu' , 'Siti' , 'John'];
+
+        for (let i = 0 ; i < nama.length ; i++) {
+            infoFruit.innerText += "\n" + nama[i];
+        }
+
+        const person = {
+            firstName : "Fareez",
+            lastName : "Borhanudin",
+            hobbies : ['reading' , 'gaming' , 'coding'],
+
+            fullName: function() {
+                return this.firstName + " " + this.lastName;
+            }
+        };
+
+        let infoPersonal = document.getElementById('infoPersonal');
+
+        console.log(person.firstName);
+        console.log(person.lastName);
+        console.log(person.fullName());
+
+        console.log(person.hobbies);
+        console.log(person.hobbies[2]);
+
+        infoPersonal.innerText = "Fullname : " + person.fullName();
+        infoPersonal.innerText += "\nHobbies : " + person.hobbies[0];
+
+
+
+
+    </script>
+
+</body>
+
+</html>

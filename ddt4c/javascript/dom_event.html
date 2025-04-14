@@ -57,6 +57,36 @@
 
     </div>
 
+    <div id="event">
+
+        <h2>Event Handling</h2>
+
+        <!-- OnClick -->
+
+        <button onclick="alert('Button Clicked')">Click Me</button> <br>
+
+        <button id="klik">Tekan Saya!</button>
+
+        <p id="welcome">Welcome</p>
+
+    <img src="https://images.squarespace-cdn.com/content/v1/607f89e638219e13eee71b1e/1684821560422-SD5V37BAG28BURTLIXUQ/michael-sum-LEpfefQf4rU-unsplash.jpg" width="250px" id="kucing">
+
+<br>
+    <!-- Event onfocus / onblur -->
+
+    <input type="text" id="nama" placeholder="Enter your name" onfocus="this.style.backgroundColor='lightblue'" onblur="this.style.backgroundColor=''" > <br>
+    <input type="text" id="nric" placeholder="Enter ur IC Number">
+
+
+    <br>
+
+    <select onchange="checkJabatan()" id="jabatan">
+        <option value="">Choose One</option>
+        <option value="DDT">DDT</option>
+        <option value="DIT">DIT</option>
+    </select>
+    </div>
+
     <script src="function.js"></script>
 
 </body>
