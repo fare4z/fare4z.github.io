@@ -49,3 +49,54 @@ function login() {
     }
 
 }
+
+
+function markah() {
+    var markahPenuh = 50;
+    let markah1 = prompt("Enter markah 1");
+    let markah2 = prompt("Enter markah 2");
+    let markah3 = prompt("Enter markah 3");
+
+    var markahLabtask = {
+        items: [
+            { criteria: "TASK 1", marks: Number(markah1) },
+            { criteria: "TASK 2", marks: Number(markah2) },
+            { criteria: "TASK 3", marks: Number(markah3) }
+        ],
+        total: 0
+    };
+
+    // Calculate the total marks using += operator
+    for (var i = 0; i < markahLabtask.items.length; i++) {
+        markahLabtask.total += markahLabtask.items[i].marks;
+    }
+    // Calculate percentage
+    var percent = markahLabtask.total / markahPenuh * 100
+
+    console.log("Total Marks : " + markahLabtask.total);
+    console.log("Percentage : " + percent)
+}
+
+
+function checkPassword() {
+
+    let password = prompt("Please enter your password");
+
+    if (Number(password)) {
+
+        if (password.length >= 8) {
+            console.log("Strong password");
+        } else {
+            console.log("Weak Password");
+
+           
+            checkPassword();
+
+            
+        }
+        
+    } else {
+        console.log("Enter number only");
+    }
+
+}
