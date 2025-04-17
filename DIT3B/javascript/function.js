@@ -77,50 +77,71 @@ function markah() {
     console.log("Percentage : " + percent)
 }
 
+let attempt = 0;
 
 function checkPassword() {
 
     let password = prompt("Please enter your password");
     let attempt = 0;
 
+    if (attempt >= 3) {
+        console.log("Attempt reach limit");
+        return false;
+    }
+
     if (Number(password)) {
+
 
         if (password.length >= 8) {
             console.log("Strong password");
         } else {
             console.log("Weak Password");
-            
+            attempt += 1;
+            checkPassword();
+
+
         }
-        
+
     } else {
         console.log("Enter number only");
     }
 
+    console.log(attempt);
+
 }
 
-function loginLogic() {
-    let username = prompt("Enter your username");
-    let password = prompt("Enter your password");
 
-    let attempt = 0;
-    let maxAttempts = 3;
-    let isLoggedIn = false;
+function checkUmur() {
+    let umur = prompt("Enter your age");
 
-    while (attempt < maxAttempts && !isLoggedIn) {
-        if (username == "fareez" && password == "123456") {
-            console.log("Success");
-            alert("Welcome " + username);
-            isLoggedIn = true;
+    if (umur < 13) {
+        console.log('kanak-kanak');
+        alert('kanak-kanak');
+    } else if ((umur >= 13) && (umur < 19)) {
+        console.log('remaja');
+        alert('remaja');
+    } else if ((umur >= 19) && (umur < 56)) {
+        console.log('dewasa');
+        alert('dewasa');
+    } else {
+        console.log('warga emas');
+        alert('warga emas');
+    }
+}
+
+function checkIC() {
+
+    let umur = prompt("Umur");
+    let adaKadPengenalan = confirm("Ada IC tak?");
+    if (umur >= 18) {
+        if (adaKadPengenalan) {
+            console.log("Anda dibenarkan masuk.");
         } else {
-            console.log("Wrong username or password. Try again.");
-            attempt++;
-            username = prompt("Enter your username");
-            password = prompt("Enter your password");
+            console.log("Anda perlu membawa kad pengenalan untuk masuk.");
         }
+    } else {
+        console.log("Anda tidak dibenarkan masuk.");
     }
-    if (attempt == maxAttempts) {
-        console.log("Maximum attempts reached. Please try again later.");
-    }
-}
 
-loginLogic();
+
+}
