@@ -81,6 +81,7 @@ function markah() {
 function checkPassword() {
 
     let password = prompt("Please enter your password");
+    let attempt = 0;
 
     if (Number(password)) {
 
@@ -88,10 +89,6 @@ function checkPassword() {
             console.log("Strong password");
         } else {
             console.log("Weak Password");
-
-           
-            checkPassword();
-
             
         }
         
@@ -100,3 +97,30 @@ function checkPassword() {
     }
 
 }
+
+function loginLogic() {
+    let username = prompt("Enter your username");
+    let password = prompt("Enter your password");
+
+    let attempt = 0;
+    let maxAttempts = 3;
+    let isLoggedIn = false;
+
+    while (attempt < maxAttempts && !isLoggedIn) {
+        if (username == "fareez" && password == "123456") {
+            console.log("Success");
+            alert("Welcome " + username);
+            isLoggedIn = true;
+        } else {
+            console.log("Wrong username or password. Try again.");
+            attempt++;
+            username = prompt("Enter your username");
+            password = prompt("Enter your password");
+        }
+    }
+    if (attempt == maxAttempts) {
+        console.log("Maximum attempts reached. Please try again later.");
+    }
+}
+
+loginLogic();
