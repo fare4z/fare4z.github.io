@@ -77,26 +77,70 @@ function markah() {
     console.log("Percentage : " + percent)
 }
 
+let attempt = 0;
 
 function checkPassword() {
 
     let password = prompt("Please enter your password");
 
+    if (attempt >= 3) {
+        console.log("Attempt reach limit");
+        return false;
+    }
+
     if (Number(password)) {
+
 
         if (password.length >= 8) {
             console.log("Strong password");
         } else {
             console.log("Weak Password");
-
-           
+            attempt += 1;
             checkPassword();
 
-            
+
         }
-        
+
     } else {
         console.log("Enter number only");
     }
+
+    console.log(attempt);
+
+}
+
+
+function checkUmur() {
+    let umur = prompt("Enter your age");
+
+    if (umur < 13) {
+        console.log('kanak-kanak');
+        alert('kanak-kanak');
+    } else if ((umur >= 13) && (umur < 19)) {
+        console.log('remaja');
+        alert('remaja');
+    } else if ((umur >= 19) && (umur < 56)) {
+        console.log('dewasa');
+        alert('dewasa');
+    } else {
+        console.log('warga emas');
+        alert('warga emas');
+    }
+}
+
+function checkIC() {
+
+    let umur = prompt("Umur");
+    let adaKadPengenalan = confirm("Ada IC tak?");
+    if (umur >= 18) {
+        if (adaKadPengenalan) {
+            console.log("Anda dibenarkan masuk.");
+        } else {
+            console.log("Anda perlu membawa kad pengenalan untuk masuk.");
+        }
+    } else {
+        console.log("Anda tidak dibenarkan masuk.");
+    }
+
 
 }
