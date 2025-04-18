@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Ordering Array</title>
 </head>
+
 <body>
-    <h1>Food Ordering SYstem</h1>
+    <h1>Food Ordering System</h1>
 
     <button id="btnMenu">Add New Menu</button>
     <hr>
@@ -22,21 +24,21 @@
 
     <h3>Payment Method</h3>
     <select id="paymentMethod()" onchange="payNow()">
-    <option value="creditCard">Credit Card</option>
-    <option value="debitCard">Debit Card</option>
-    <option value="cash">Cash</option>
+        <option value="creditCard">Credit Card</option>
+        <option value="debitCard">Debit Card</option>
+        <option value="cash">Cash</option>
     </select>
 
     <script>
         const menu = [
-            {name : "Nasi Ayam" , price : 5.00},
-            {name : "Mee Goreng" , price : 7.00},
-            {name : "Nasi Lemak" , price : 6.00},
+            { name: "Nasi Ayam", price: 5.00 },
+            { name: "Mee Goreng", price: 7.00 },
+            { name: "Nasi Lemak", price: 6.00 },
         ];
 
         const form = document.getElementById('menuForm');
 
-        for (let i=0 ; i < menu.length ; i++) {
+        for (let i = 0; i < menu.length; i++) {
             const item = menu[i];
             const label = document.createElement("label");
             const checkbox = document.createElement("input");
@@ -45,7 +47,7 @@
             checkbox.name = "menuItem";
             checkbox.value = item.name;
             checkbox.id = "item" + i;
-            
+
             label.htmlFor = checkbox.id;
             label.innerHTML = item.name + "- RM " + item.price.toFixed(2);
             label.prepend(checkbox);
@@ -59,4 +61,5 @@
 
 
 </body>
+
 </html>
