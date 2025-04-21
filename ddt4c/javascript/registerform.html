@@ -1,99 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-
 <body>
-    <form onsubmit="return validateForm()" id="registerForm">
-        <table>
-            <tr>
-                <td>Fullname</td>
-                <td><input type="text" placeholder="Fullname" id="fullname"
-                        onblur="this.value = this.value.toUpperCase();"> </td>
-            </tr>
-            <tr>
-                <td>Username</td>
-                <td><input type="text" placeholder="Username" id="username"
-                        onblur="this.value = this.value.toLowerCase();"></td>
-            </tr>
 
-            <tr>
-                <td>Email</td>
-                <td><input type="text" placeholder="Email" id="email"></td>
-            </tr>
+  <form onsubmit="return validateForm()" id="registerForm">
+    <table>
+      <tr>
+        <td>Fullname</td>
+        <td>
+          <input type="text" id="fullname" name="Fullname" placeholder="Fullname"
+                 onblur="this.value = this.value.toUpperCase();">
+        </td>
+      </tr>
+      <tr>
+        <td>Username</td>
+        <td>
+          <input type="text" id="username" name="Username" placeholder="Username"
+                 onblur="this.value = this.value.toLowerCase();">
+        </td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>
+          <input type="text" id="email" name="Email" placeholder="Email">
+        </td>
+      </tr>
+      <tr>
+        <td>Password <br> *Min 8 Characters</td>
+        <td>
+          <input type="password" id="password" name="Password" placeholder="Password">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button type="submit">Submit</button>
+        </td>
+      </tr>
+    </table>
+  </form>
 
-            <tr>
-                <td>Password <br> *Min 8 Character</td>
-                <td><input type="password" placeholder="Password" id="password"></td>
-            </tr>
+  <script>
+    function validateForm() {
+      const fullname = document.getElementById("fullname").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
 
-            <tr>
-                <td colspan="2"> <button type="submit" onclick="displayData()">Submit</button> </td>
-            </tr>
-        </table>
+      if (fullname === "" || username === "" || email === "" || password === "") {
+        Swal.fire({
+          title: "Error",
+          text: "All fields are required",
+          icon: "warning"
+        });
+        return false;
+      }
 
-        <script>
-            function validateForm() {
-                const fullname = document.getElementById("fullname").value.trim();
-                const username = document.getElementById("username").value.trim();
-                const email = document.getElementById("email").value.trim();
-                const password = document.getElementById("password").value.trim();
+      if (!email.includes("@") || !email.includes(".")) {
+        Swal.fire({
+          title: "Invalid Email",
+          text: "Please enter a valid email address",
+          icon: "error"
+        });
+        return false;
+      }
 
-                if (fullname === "" || username === "" || email === "" || password === "") {
-                    // alert("All field is required");
+      if (password.length < 8) {
+        Swal.fire({
+          title: "Invalid Password",
+          text: "Password must be at least 8 characters",
+          icon: "error"
+        });
+        return false;
+      }
 
-                    Swal.fire({
-                        title: "Error",
-                        text: "All Field is Required",
-                        icon: "warning"
-                    });
+      displayData();
+      return false; 
+    }
 
-                    return false;
-                }
+    function displayData() {
+      const form = document.getElementById("registerForm");
+      const formData = new FormData(form);
+      let output = "";
 
-                if (!email.includes("@") || !email.includes(".")) {
-                    alert("Invalid email format");
-                    return false;
-                }
+      for (const [key, value] of formData.entries()) {
+        output += `<b>${key}</b>: ${value}<br>`;
+      }
 
-                if (password.length < 8) {
-                    alert("Password must be at least 8 character");
-                    return false;
-                }
-                alert("Success");
-                // displayData();
-                return true;
-
-            }
-
-
-            function displayData() {
-                const form = document.getElementById("registerForm");
-                const formData = new FormData(form);
-                let output = "";
-
-                for (const [key, value] of formData.entries()) {
-                    output += `${key} : ${value} \n`;
-                }
-
-                Swal.fire({
-                    icon: "info",
-                    title: "Success",
-                    text: output,
-                    footer: '<a href="#">Why do I have this issue?</a>'
-                });
-            }
-
-        </script>
-    </form>
+      Swal.fire({
+        icon: "info",
+        title: "Form Data Submitted",
+        html: output 
+      });
+    }
+  </script>
 
 </body>
-
 </html>
